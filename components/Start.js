@@ -1,10 +1,17 @@
+// Packages
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, Pressable, Image, ImageBackground } from 'react-native';
 
+// Import input icon SVG
 import InputIcon from './img/icon.svg';
 
+// Background Image
 const image = require('./img/Background-Image.png');
 
+/**
+ * User input component that gets rendered when the user
+ * starts the app. User enters a name and selects a background color.
+ */
 export default class Start extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +34,7 @@ export default class Start extends React.Component {
           <Text style={styles.title}>Chit Chat</Text>
 
           <View style={styles.userInfoContainer}>
+            {/* Input box style with input icon */}
             <View style={styles.inputBox}>
               <View style={styles.inputIconWrap}><InputIcon width={16} height={16} /></View>
 
