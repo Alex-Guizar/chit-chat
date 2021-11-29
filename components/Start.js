@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, Pressable, Image, ImageBackground } from 'react-native';
 
+import InputIcon from './img/icon.svg';
+
 const image = require('./img/Background-Image.png');
-const inputIcon = require('./img/icon.svg');
 
 export default class Start extends React.Component {
   constructor(props) {
@@ -27,17 +28,15 @@ export default class Start extends React.Component {
 
           <View style={styles.userInfoContainer}>
             <View style={styles.inputBox}>
-              <Image 
-                source={inputIcon} 
-                style={styles.inputIcon}
+              <View style={styles.inputIconWrap}><InputIcon width={16} height={16} /></View>
+
+              <TextInput 
+                style={styles.textInput} 
+                onChangeText={(text) => this.setState({text})}
+                value={this.state.text}
+                placeholder="Enter Name"
               />
             </View>
-            <TextInput 
-              style={styles.textInput} 
-              onChangeText={(text) => this.setState({text})}
-              value={this.state.text}
-              placeholder="Enter Name"
-            />
 
             {/* Background color selection */}
             <View style={styles.colorWrap}>
@@ -129,16 +128,24 @@ const styles = StyleSheet.create({
   inputBox: {
     borderWidth: 1,
     borderColor: '#757083',
-    borderRadius: 3
+    borderRadius: 3,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
   },
 
-  inputIcon: {
-    width: 24,
-    height: 24
+  inputIconWrap: {
+    opacity: 0.5
   },
 
   textInput: {
-    height: 40,
+    flex: 1,
+    fontSize: 16,
+    fontWeight: '300',
+    color: '#757083',
+    paddingVertical: 16,
+    marginLeft: 8
   },
 
   colorWrap: {
