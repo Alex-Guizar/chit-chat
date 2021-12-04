@@ -25,22 +25,42 @@ export default class Chat extends React.Component {
     this.setState({
       messages: [
         {
-          _id: 2,
-          text: 'Hi React Native!',
+          _id: 4,
+          text: 'I\'m doing well, thank you very much!',
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: 'Chat Bot',
+            avatar: 'https://placeimg.com/140/140/any'
+          }
+        },
+        {
+          _id: 3,
+          text: 'How are you doing today?',
           createdAt: new Date(),
           user: {
             _id: 1,
             name: 'Alex',
-            avatar: ''
+            avatar: 'https://placeimg.com/140/140/any'
+          }
+        },
+        {
+          _id: 2,
+          text: 'Hello!',
+          createdAt: new Date(),
+          user: {
+            _id: 1,
+            name: 'Alex',
+            avatar: 'https://placeimg.com/140/140/any'
           }
         },
         {
           _id: 1,
-          text: 'Hello developer',
+          text: 'Welcome to Chit Chat!',
           createdAt: new Date(),
           user: {
             _id: 2,
-            name: 'React Native',
+            name: 'Chat Bot',
             avatar: 'https://placeimg.com/140/140/any'
           }
         }
