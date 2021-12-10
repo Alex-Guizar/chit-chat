@@ -1,6 +1,6 @@
 // Packages
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Pressable, Image, ImageBackground } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Pressable, ImageBackground, KeyboardAvoidingView } from 'react-native';
 
 // Import input icon SVG
 import InputIcon from './img/icon.svg';
@@ -30,75 +30,77 @@ export default class Start extends React.Component {
   render() {
     return (
       <ImageBackground source={image} style={{width: '100%', height: '100%'}}>
-        <View style={styles.container}>
-          <Text style={styles.title}>Chit Chat</Text>
+        <KeyboardAvoidingView behavior="height">
+          <View style={styles.container}>
+            <Text style={styles.title}>Chit Chat</Text>
 
-          <View style={styles.userInfoContainer}>
-            {/* Input box style with input icon */}
-            <View style={styles.inputBox}>
-              <View style={styles.inputIconWrap}><InputIcon width={16} height={16} /></View>
+            <View style={styles.userInfoContainer}>
+              {/* Input box style with input icon */}
+              <View style={styles.inputBox}>
+                <View style={styles.inputIconWrap}><InputIcon width={16} height={16} /></View>
 
-              <TextInput 
-                style={styles.textInput} 
-                onChangeText={(text) => this.setState({text})}
-                value={this.state.text}
-                placeholder="Enter Name"
-              />
-            </View>
-
-            {/* Background color selection */}
-            <View style={styles.colorWrap}>
-              <Text style={styles.colorText}>Choose Background Color:</Text>
-
-              <View style={styles.colorOptions}>
-                <Pressable 
-                  style={this.state.selectedColor === '#090C08' ? 
-                    [styles.colorOptionWrap, styles.colorActive] : 
-                    styles.colorOptionWrap
-                  }
-                  onPress={() => this.setSelectedColor('#090C08')}
-                >
-                  <View style={[styles.colorOption, styles.optionOne]}></View>
-                </Pressable>
-
-                <Pressable 
-                  style={this.state.selectedColor === '#474056' ? 
-                    [styles.colorOptionWrap, styles.colorActive] : 
-                    styles.colorOptionWrap
-                  }
-                  onPress={() => this.setSelectedColor('#474056')}
-                >
-                  <View style={[styles.colorOption, styles.optionTwo]}></View>
-                </Pressable>
-
-                <Pressable 
-                  style={this.state.selectedColor === '#8A95A5' ? 
-                    [styles.colorOptionWrap, styles.colorActive] : 
-                    styles.colorOptionWrap
-                  }
-                  onPress={() => this.setSelectedColor('#8A95A5')}
-                >
-                  <View style={[styles.colorOption, styles.optionThree]}></View>
-                </Pressable>
-
-                <Pressable 
-                  style={this.state.selectedColor === '#B9C6AE' ? 
-                    [styles.colorOptionWrap, styles.colorActive] : 
-                    styles.colorOptionWrap
-                  }
-                  onPress={() => this.setSelectedColor('#B9C6AE')}
-                >
-                  <View style={[styles.colorOption, styles.optionFour]}></View>
-                </Pressable>
+                <TextInput 
+                  style={styles.textInput} 
+                  onChangeText={(text) => this.setState({text})}
+                  value={this.state.text}
+                  placeholder="Enter Name"
+                />
               </View>
-            </View>
 
-            <Pressable 
-              style={styles.buttonWrap}
-              onPress={() => this.props.navigation.navigate('Chat', { name: this.state.text, background: this.state.selectedColor })}
-            ><Text style={styles.button}>Start Chatting</Text></Pressable>
+              {/* Background color selection */}
+              <View style={styles.colorWrap}>
+                <Text style={styles.colorText}>Choose Background Color:</Text>
+
+                <View style={styles.colorOptions}>
+                  <Pressable 
+                    style={this.state.selectedColor === '#090C08' ? 
+                      [styles.colorOptionWrap, styles.colorActive] : 
+                      styles.colorOptionWrap
+                    }
+                    onPress={() => this.setSelectedColor('#090C08')}
+                  >
+                    <View style={[styles.colorOption, styles.optionOne]}></View>
+                  </Pressable>
+
+                  <Pressable 
+                    style={this.state.selectedColor === '#474056' ? 
+                      [styles.colorOptionWrap, styles.colorActive] : 
+                      styles.colorOptionWrap
+                    }
+                    onPress={() => this.setSelectedColor('#474056')}
+                  >
+                    <View style={[styles.colorOption, styles.optionTwo]}></View>
+                  </Pressable>
+
+                  <Pressable 
+                    style={this.state.selectedColor === '#8A95A5' ? 
+                      [styles.colorOptionWrap, styles.colorActive] : 
+                      styles.colorOptionWrap
+                    }
+                    onPress={() => this.setSelectedColor('#8A95A5')}
+                  >
+                    <View style={[styles.colorOption, styles.optionThree]}></View>
+                  </Pressable>
+
+                  <Pressable 
+                    style={this.state.selectedColor === '#B9C6AE' ? 
+                      [styles.colorOptionWrap, styles.colorActive] : 
+                      styles.colorOptionWrap
+                    }
+                    onPress={() => this.setSelectedColor('#B9C6AE')}
+                  >
+                    <View style={[styles.colorOption, styles.optionFour]}></View>
+                  </Pressable>
+                </View>
+              </View>
+
+              <Pressable 
+                style={styles.buttonWrap}
+                onPress={() => this.props.navigation.navigate('Chat', { name: this.state.text, background: this.state.selectedColor })}
+              ><Text style={styles.button}>Start Chatting</Text></Pressable>
+            </View>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
     );
   }
