@@ -48,12 +48,8 @@ export default class Chat extends React.Component {
    * Adds user's entered name to the navigation title.
    */
   componentDidMount() {
-    // this.getMessages();
-
     let { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
-
-    this.getMessages();
 
     // Check to see if user is online
     NetInfo.fetch().then(connection => {
@@ -90,6 +86,8 @@ export default class Chat extends React.Component {
         this.setState({
           isConnected: false
         });
+
+        this.getMessages();
       }
     });
   }
