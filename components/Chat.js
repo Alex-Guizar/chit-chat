@@ -2,13 +2,16 @@
 import React from 'react';
 import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
 import { Bubble, Day, GiftedChat, InputToolbar } from 'react-native-gifted-chat';
+import MapView from 'react-native-maps';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 
 // Firebase
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
+import firebase from 'firebase';
+import 'firebase/firestore';
+
+// Custom Components
+import CustomActions from './CustomActions';
 
 /**
  * Chat component receives user name and background color hex code
@@ -20,7 +23,9 @@ export default class Chat extends React.Component {
       messages: [],
       backgroundColor: props.route.params.background,
       uid: 0,
-      isConnected: false
+      isConnected: false,
+      image: null,
+      location: null
     }
 
     const firebaseConfig = {
@@ -53,7 +58,7 @@ export default class Chat extends React.Component {
 
     // Check to see if user is online
     NetInfo.fetch().then(connection => {
-      if (connection.isInternetReachable) {
+      if (connection.isConnected) {
         this.setState({
           isConnected: true
         });
@@ -118,7 +123,9 @@ export default class Chat extends React.Component {
           _id: data.user._id,
           name: data.user.name,
           avatar: data.user.avatar
-        }
+        },
+        image: data.image || null,
+        location: data.location || null
       });
     });
 
@@ -132,6 +139,7 @@ export default class Chat extends React.Component {
    */
   addMessage() {
     const message = this.state.messages[0];
+    console.log(this.state.messages);
     this.referenceMessages.add({
       _id: message._id,
       text: message.text || '',
@@ -140,7 +148,9 @@ export default class Chat extends React.Component {
         _id: message.user._id,
         name: message.user.name || '',
         avatar: message.user.avatar || ''
-      }
+      },
+      image: message.image || null,
+      location: message.location || null
     });
   }
 
@@ -246,6 +256,34 @@ export default class Chat extends React.Component {
     }
   }
 
+  renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  }
+
+  renderCustomView (props) {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
+      return (
+        <MapView
+          style={{
+            width: 150,
+            height: 100,
+            borderRadius: 13,
+            margin: 3
+          }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421
+          }}
+        />
+      )
+    }
+
+    return null;
+  }
+
   /**
    * 
    * @returns Chat component
@@ -269,6 +307,8 @@ export default class Chat extends React.Component {
           }}
           renderDay={this.renderDay.bind(this)}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
+          renderActions={this.renderCustomActions.bind(this)}
+          renderCustomView={this.renderCustomView}
         />
         { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null }
       </View>
