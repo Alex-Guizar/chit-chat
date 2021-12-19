@@ -23,3 +23,43 @@ Chit Chat is a chat application for mobile devices. It was developed using React
 
 * React Native
 * Expo
+* Google Firebase
+* 
+
+## Installation
+
+### Prerequistes
+
+NPM or Yarn
+
+* NPM: `npm install expo-cli --global`
+* Yarn: `yarn global add expo-cli`
+
+### Dependencies
+
+* While in the root folder of the project
+* Run `npm install` or `yarn install`
+
+### Run the Application
+
+* To launch the application, run `expo start` or `npm start`
+
+Use one of the following to view Application
+
+* Installed Android emulator
+* iOS simulator
+* QR code with mobile device
+
+### Firebase
+
+* Visit [Google Firebase](https://firebase.google.com/) and create an account.
+* Use the **Go to console** link in the upper right corner, then click on **Create Project**.
+* Name your new project and leave the settings at default.
+* After the project has been created and from the Firebase dashboard, create a database.
+  * From the Firebase dashboard, open the **Build** submenu from the left-hand side and select **Firestore Database**.
+  * Select **Create Database**.
+* Open the project settings by selecting the gear icon next to **Project Overview** then selecting **Project Settings**.
+* Under the **General** tab, you’ll find a section called **Your apps**.
+* Click the **Firestore for Web** button (it may be shown as the **</>** icon).
+* Register the web application to generate configuration code.
+* Copy **firebaseConfig** object and paste it into the credentials location in **Chat.js**

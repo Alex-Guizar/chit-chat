@@ -28,6 +28,9 @@ export default class Chat extends React.Component {
       location: null
     }
 
+    /**
+     * Firebase Credentials
+     */
     const firebaseConfig = {
       apiKey: "AIzaSyDYR2knwd2aldz0Wte9RNV6AUMIXUiW3p4",
       authDomain: "chit-chat-267a1.firebaseapp.com",
