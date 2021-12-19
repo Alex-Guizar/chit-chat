@@ -245,6 +245,13 @@ export default class Chat extends React.Component {
     );
   }
 
+  /**
+   * 
+   * @param {*} props 
+   * @returns Input Toolbar Component
+   * If application is connected to the internet
+   * output the InputToolbar component
+   */
   renderInputToolbar(props) {
     if (this.state.isConnected == false) {
     } else {
@@ -256,10 +263,23 @@ export default class Chat extends React.Component {
     }
   }
 
+  /**
+   * 
+   * @param {*} props 
+   * @returns Custom Actions Component
+   * 
+   */
   renderCustomActions = (props) => {
     return <CustomActions {...props} />;
   }
 
+  /**
+   * 
+   * @param {*} props 
+   * @returns Map View Component
+   * Display MapView component with coordinats passed
+   * to the current message.
+   */
   renderCustomView (props) {
     const { currentMessage } = props;
     if (currentMessage.location) {
