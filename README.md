@@ -2,6 +2,8 @@
 
 Chit Chat is a chat application for mobile devices. It was developed using React Native to provide users with a chat interface and options to share images and their location.
 
+![Chit Chat home page showing user input options: name and background color](readmeImages/chit-chat-home.JPG)
+
 ## User Stories
 
 * As a new user, I want to be able to easily enter a chat room so I can quickly start talking to my friends and family.
@@ -44,7 +46,7 @@ NPM or Yarn
 
 * To launch the application, run `expo start` or `npm start`
 
-Use one of the following to view Application
+Use one of the following to view the application
 
 * Installed Android emulator
 * iOS simulator
